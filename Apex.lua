@@ -12,7 +12,7 @@ local camera = workspace.CurrentCamera
 -- ==========================================
 -- 2. SISTEMA DE KEY (A PROTEÇÃO)
 -- ==========================================
-local KeyCorreta = "APEXDV56" -- ⚠️ SUA SENHA
+local KeyCorreta = "APEXDV56" -- ⚠️ ApexDv56
 local LinkKey = "https://discord.gg/XnXcSWDkZ" -- ⚠️ SEU LINK
 
 local KeyGui = Instance.new("ScreenGui")
