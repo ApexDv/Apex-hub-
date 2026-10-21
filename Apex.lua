@@ -110,43 +110,18 @@ VerificarBtn.MouseButton1Click:Connect(function()
         task.wait(0.5)
         KeyGui:Destroy()
         
-        -- Carrega o Rayfield SÓ DEPOIS que a key estiver certa
+        -- Carrega o Rayfield
         local success, Rayfield = pcall(function()
             return loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
         end)
 
         if not success or not Rayfield then
-            player:Kick("Erro ao carregar a interface. Verifique sua internet.")
+            player:Kick("Erro ao carregar a interface.")
             return
         end
 
         -- ==========================================
-        -- 4. DETECTOR DE METAMÉTODOS (AQUI ESTÁ ELE)
-        -- ==========================================
-        pcall(function()
-            local GetCallerFromXpcall = function(BaseFunction)
-                return select(2, xpcall(BaseFunction, function()
-                    return debug.info(2, "f")
-                end))
-            end
-
-            local __namecall = GetCallerFromXpcall(function() return game:____() end)
-            local __newindex = GetCallerFromXpcall(function() return game:____ = nil end)
-            local __index = GetCallerFromXpcall(function() return game:____ end)
-
-            task.spawn(function()
-                while task.wait(1) do
-                    if __namecall ~= GetCallerFromXpcall(function() return game:____() end)
-                    or __newindex ~= GetCallerFromXpcall(function() return game:____ = nil end)
-                    or __index ~= GetCallerFromXpcall(function() return game:____ end) then
-                        print("Detectado - Ganchos de metamétodo brutos")
-                    end
-                end
-            end)
-        end)
-
-        -- ==========================================
-        -- 5. MENU DO HUB
+        -- 4. MENU DO HUB
         -- ==========================================
         local Config = { AimlockAtivo = false, MiraPausada = false, FOV = 70, HitboxAtiva = false, HitboxSize = 6, HitboxVisibility = 50, ESPAtivo = false, PausarAoArrastar = false }
 
@@ -263,7 +238,7 @@ VerificarBtn.MouseButton1Click:Connect(function()
         PlayerTab:CreateSlider({ Name = "Jump", Range = {50, 500}, Increment = 1, Suffix = "pwr", CurrentValue = 50, Callback = function(Value) local hum = player.Character and player.Character:FindFirstChildOfClass("Humanoid"); if hum then hum.JumpPower = Value end end, })
 
         UpdateTab:CreateSection("Notas de Atualização")
-        UpdateTab:CreateParagraph({Title = "Apex Hub v6.5", Content = "Sistema de Key adicionado. ESP atualizado com linha guia."})
+        UpdateTab:CreateParagraph({Title = "Apex Hub v6.6", Content = "Sistema de Key adicionado. ESP atualizado com linha guia."})
 
         AttentionTab:CreateSection("Aviso")
         AttentionTab:CreateParagraph({Title = "Uso Responsável", Content = "Use apenas em servidores privados."})
